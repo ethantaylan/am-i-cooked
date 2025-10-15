@@ -24,7 +24,7 @@ export const C00KED_NAMES = [
 export const MESSAGES = {
   SUCCESS: "😎 you are good, for now",
   C00KED: "C00KED",
-  TITLE: "am i c00ked?",
+  TITLE: "AM I C00KED?",
   PLACEHOLDER: "type something...",
 } as const;
 
