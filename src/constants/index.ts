@@ -24,7 +24,7 @@ export const MESSAGES = {
   SUCCESS: "😎 you are good, for now",
   COOKED: "COOKED",
   TITLE: "am i cooked?",
-  PLACEHOLDER: "enter name...",
+  PLACEHOLDER: "type something...",
 } as const;
 
 export const ANIMATION_DURATIONS = {

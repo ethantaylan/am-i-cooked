@@ -41,17 +41,17 @@ export default function App() {
         </div>
 
         {/* Title */}
-        <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-light tracking-[-0.02em] mb-16 transition-all duration-300 hover:tracking-[0.1em]">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl tracking-wider">
           {MESSAGES.TITLE}
         </h1>
 
         {/* Input */}
-        <div className="mx-auto max-w-[500px]">
+        <div className="mx-auto w-full flex items-center justify-center mt-10">
           <input
             aria-label="name-input"
             value={name}
             onChange={(e) => handleInputChange(e.target.value)}
-            className="w-full px-8 py-6 text-2xl font-light bg-transparent border-none border-b-2 border-white/20 text-white text-center outline-none transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] tracking-[0.05em] placeholder:text-white/30 placeholder:font-light focus:border-b-white focus:pb-7 hover:border-b-white/50"
+            className="w-full border-b p-5 placeholder:text-xl"
             placeholder={MESSAGES.PLACEHOLDER}
             autoFocus
           />
@@ -80,7 +80,7 @@ export default function App() {
           {/* Content */}
           <div className="flex flex-col items-center justify-center gap-8 animate-[fadeInSlow_3s_ease-in_forwards] opacity-0">
             <img
-              className="max-w-[600px] w-[85vw] h-auto rounded-lg grayscale-0 contrast-110"
+              className="max-w-[600px] w-[85vw] h-auto rounded-lg [filter:grayscale(0%)_contrast(1.1)]"
               src={cookedDog}
               alt="cooked dog"
             />
