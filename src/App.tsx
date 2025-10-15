@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { MESSAGES } from "./constants";
 import { isNameC00ked } from "./utils/nameValidator";
 import type { CookStatus } from "./types";
-import c00kedDog from "./assets/cooked-dog.webp";
+import c00kedDog from "./assets/c00ked-dog.webp";
 import waitingVideo from "./assets/waiting.mp4";
 
 export default function App() {

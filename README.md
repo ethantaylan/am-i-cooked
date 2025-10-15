@@ -1,4 +1,4 @@
-# 🔥 Am I Cooked?
+# 🔥 Am I C00ked?
 
 > **The ultimate truth detector for your existence**
 > Type your name. Face the reality. No escape.
@@ -10,13 +10,13 @@
 
 ## 🎯 What is this?
 
-A brutally honest web app that tells you if you're **COOKED** or not. Just type your name and prepare yourself for the truth.
+A brutally honest web app that tells you if you're **C00KED** or not. Just type your name and prepare yourself for the truth.
 
 ### ✨ Features
 
 - 🎬 **Cinematic Experience** - Dramatic fade-ins and smooth animations
 - 🎥 **Waiting Animation** - A hypnotic looping video while you contemplate your existence
-- 🐕 **The Ultimate Reveal** - If you're cooked, you'll know it
+- 🐕 **The Ultimate Reveal** - If you're c00ked, you'll know it
 - 😎 **Safe Zone** - Green light if you're good... *for now*
 - ⚡ **Lightning Fast** - Built with Vite for instant hot reload
 - 📱 **Fully Responsive** - Works perfectly on all devices
@@ -49,7 +49,7 @@ This project follows **SMART Architecture** principles:
 src/
 ├── assets/              # Static files (images, videos)
 ├── constants/           # Configuration & constants
-│   └── index.ts        # COOKED_NAMES, messages, durations
+│   └── index.ts        # C00KED_NAMES, messages, durations
 ├── types/              # TypeScript type definitions
 │   └── index.ts        # Application types
 ├── utils/              # Pure utility functions
@@ -78,12 +78,12 @@ src/
 
 ## 🔧 Customization
 
-### Adding New "Cooked" Names
+### Adding New "C00ked" Names
 
 Edit [`src/constants/index.ts`](src/constants/index.ts):
 
 ```typescript
-export const COOKED_NAMES = [
+export const C00KED_NAMES = [
   "leah",
   "kayz",
   "yourname", // Add your name here
@@ -102,8 +102,8 @@ Update the `MESSAGES` constant in [`src/constants/index.ts`](src/constants/index
 ```typescript
 export const MESSAGES = {
   SUCCESS: "😎 you are good, for now",
-  COOKED: "COOKED",
-  TITLE: "am i cooked?",
+  C00KED: "C00KED",
+  TITLE: "am i c00ked?",
   PLACEHOLDER: "enter name...",
 } as const;
 ```
@@ -135,7 +135,7 @@ npm run lint     # Lint code with ESLint
 2. **Watch the video** - A looping animation keeps you entertained
 3. **Get the verdict**:
    - ✅ **Green message** - You're safe (for now)
-   - 🔥 **COOKED** - The dramatic overlay appears with a meme
+   - 🔥 **C00KED** - The dramatic overlay appears with a meme
 4. **Close and retry** - Click the ✕ button to try another name
 
 ## 🧪 Code Quality
@@ -167,9 +167,9 @@ This project demonstrates:
 
 ## 🤝 Contributing
 
-Want to add more cooked names? Feel free to:
+Want to add more c00ked names? Feel free to:
 1. Fork the repo
-2. Add names to `COOKED_NAMES`
+2. Add names to `C00KED_NAMES`
 3. Submit a PR
 
 ## 📄 License
