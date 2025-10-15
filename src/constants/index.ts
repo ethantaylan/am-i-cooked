@@ -2,24 +2,17 @@
  * Application constants
  */
 
-export const C00KED_NAMES = [
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-  "REDACTED",
-] as const;
+// Load C00KED names from environment variables to keep them secret
+const getC00kedNames = (): readonly string[] => {
+  const envNames = import.meta.env.VITE_C00KED_NAMES;
+  if (!envNames) {
+    console.warn("VITE_C00KED_NAMES not found in environment variables");
+    return [];
+  }
+  return envNames.split(",").map((name: string) => name.trim().toLowerCase());
+};
+
+export const C00KED_NAMES = getC00kedNames();
 
 export const MESSAGES = {
   SUCCESS: "😎 you are good, for now",

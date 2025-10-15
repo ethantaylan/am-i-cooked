@@ -34,6 +34,10 @@ cd am-i-cooked
 # Install dependencies
 npm install
 
+# Set up environment variables
+cp .env.example .env
+# Edit .env and add your secret trigger words
+
 # Start the dev server
 npm run dev
 
@@ -78,17 +82,21 @@ src/
 
 ## 🔧 Customization
 
-### Adding New "C00ked" Names
+### 🔐 Environment Setup
 
-Edit [`src/constants/index.ts`](src/constants/index.ts):
+**IMPORTANT:** Trigger words are stored in environment variables to keep them secret from the source code.
 
-```typescript
-export const C00KED_NAMES = [
-  "leah",
-  "kayz",
-  "yourname", // Add your name here
-] as const;
-```
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Edit [`.env`](.env) and add your secret trigger words (comma-separated):
+   ```env
+   VITE_C00KED_NAMES=name1,name2,name3
+   ```
+
+3. **Security Note:** The `.env` file is gitignored and will never be committed to GitHub.
 
 The validator automatically handles:
 - ✅ Case insensitivity (`LEAH` = `leah`)

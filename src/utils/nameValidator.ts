@@ -19,5 +19,5 @@ export const normalizeString = (value: string): string => {
 export const isNameC00ked = (name: string): boolean => {
   if (!name.trim()) return false;
   const normalized = normalizeString(name);
-  return C00KED_NAMES.includes(normalized as typeof C00KED_NAMES[number]);
+  return C00KED_NAMES.includes(normalized);
 };
