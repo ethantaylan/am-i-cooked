@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? process.env.FRONTEND_URL || "https://yourdomain.com"
+      ? process.env.FRONTEND_URL || "https://am-i-c00ked.netlify.app"
       : ["http://localhost:5173", "http://localhost:5174"],
   optionsSuccessStatus: 200,
 };
@@ -38,7 +38,7 @@ const openai = new OpenAI({
 
 app.post("/api/judge", async (req, res) => {
   try {
-    const { scenario } = req.body;
+    const { scenario, language } = req.body;
 
     // Validation
     if (!scenario || !scenario.trim()) {
@@ -64,6 +64,8 @@ Analyze the scenario and respond with:
 2. A brief, witty explanation (1-2 sentences max)
 
 Be funny, slightly sarcastic, but not mean. Use internet slang when appropriate.
+
+Please verdict in the JSON below should be in ${language}
 
 Response format (JSON):
 {

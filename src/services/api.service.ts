@@ -41,9 +41,12 @@ class ApiClient {
     // Request interceptor
     this.client.interceptors.request.use(
       (config) => {
-        logger.debug(`API Request: ${config.method?.toUpperCase()} ${config.url}`, {
-          data: config.data,
-        });
+        logger.debug(
+          `API Request: ${config.method?.toUpperCase()} ${config.url}`,
+          {
+            data: config.data,
+          }
+        );
         return config;
       },
       (error) => {
@@ -55,22 +58,24 @@ class ApiClient {
     // Response interceptor
     this.client.interceptors.response.use(
       (response) => {
-        logger.debug(`API Response: ${response.status} ${response.config.url}`, {
-          data: response.data,
-        });
+        logger.debug(
+          `API Response: ${response.status} ${response.config.url}`,
+          {
+            data: response.data,
+          }
+        );
         return response;
       },
       (error: AxiosError) => {
         const message = this.getErrorMessage(error);
-        logger.error(`API Error: ${error.response?.status || "Network Error"}`, {
-          url: error.config?.url,
-          message,
-        });
-        throw new ApiError(
-          message,
-          error.response?.status,
-          error
+        logger.error(
+          `API Error: ${error.response?.status || "Network Error"}`,
+          {
+            url: error.config?.url,
+            message,
+          }
         );
+        throw new ApiError(message, error.response?.status, error);
       }
     );
   }
@@ -94,10 +99,10 @@ class ApiClient {
   /**
    * Judge a scenario
    */
-  async judgeScenario(scenario: string): Promise<AIJudgement> {
+  async judgeScenario(scenario: string, language: string): Promise<AIJudgement> {
     const response = await this.client.post<AIJudgement>(
       APP_CONFIG.api.endpoints.judge,
-      { scenario }
+      { scenario, language }
     );
     return response.data;
   }

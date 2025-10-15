@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.12.2",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
@@ -21,6 +22,7 @@
     "openai": "^6.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sirv": "^3.0.2",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

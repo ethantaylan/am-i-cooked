@@ -7,11 +7,14 @@ import { isNameC00ked } from "../utils/nameValidator";
 import { apiClient } from "./api.service";
 import type { AIJudgement } from "../types";
 import { APP_CONFIG } from "../config/app.config";
+import { Language } from "../i18n/translations";
 
 /**
  * Validates a scenario before sending to API
  */
-export const validateScenario = (scenario: string): { valid: boolean; error?: string } => {
+export const validateScenario = (
+  scenario: string
+): { valid: boolean; error?: string } => {
   const trimmed = scenario.trim();
 
   if (!trimmed) {
@@ -32,7 +35,8 @@ export const validateScenario = (scenario: string): { valid: boolean; error?: st
  * Judge a scenario - handles both predefined names and AI judgement
  */
 export const judgeScenario = async (
-  scenario: string
+  scenario: string,
+  language: Language
 ): Promise<{ isCooked: boolean; judgement: AIJudgement | null }> => {
   // Validate input
   const validation = validateScenario(scenario);
@@ -48,8 +52,16 @@ export const judgeScenario = async (
     };
   }
 
+  const languageMap: Record<Language, string> = {
+    fr: "français",
+    en: "english",
+  };
+
   // Call AI API for judgement
-  const judgement = await apiClient.judgeScenario(scenario);
+  const judgement = await apiClient.judgeScenario(
+    scenario,
+    languageMap[language]
+  );
 
   return {
     isCooked: judgement.percentage >= APP_CONFIG.ui.judgementThreshold,
