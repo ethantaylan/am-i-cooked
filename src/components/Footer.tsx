@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
         <Github size={20} />
         <small>@ethantaylan</small>
       </a>
-      <cite className="text-center max-w-md">{randomFact}</cite>
+      {/* <cite className="text-center max-w-md">{randomFact}</cite> */}
     </div>
   );
 };

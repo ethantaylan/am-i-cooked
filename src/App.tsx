@@ -79,7 +79,6 @@ export default function App() {
                   : "border-gray-300 text-black placeholder:text-gray-400 focus:border-gray-400"
               }`}
               placeholder={t.inputPlaceholder}
-              autoFocus
               disabled={loading}
               maxLength={200}
             />
