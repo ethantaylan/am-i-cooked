@@ -12,7 +12,8 @@
       "Bash(git reflog:*)",
       "Bash(git gc:*)",
       "Bash(git update-ref:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npm install express cors dotenv)"
     ],
     "deny": [],
     "ask": []
