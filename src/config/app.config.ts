@@ -6,7 +6,7 @@
 export const APP_CONFIG = {
   // API Configuration
   api: {
-    baseUrl: import.meta.env.VITE_API_URL || "http://localhost:3001",
+    baseUrl: import.meta.env.VITE_API_URL || "http://localhost:8888",
     endpoints: {
       judge: "/.netlify/functions/judge",
       health: "/api/health",
