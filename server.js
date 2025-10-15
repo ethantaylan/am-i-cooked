@@ -11,7 +11,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.post("/api/judge", async (req, res) => {
+const handler = () => {
   try {
     const { scenario, language } = req.body;
 
@@ -64,6 +64,8 @@ Response format (JSON):
       verdict: result.verdict,
       isCooked: result.percentage >= 50,
     });
+
+    
   } catch (error) {
     console.error("Error calling OpenAI:", error);
     res.status(500).json({
@@ -71,12 +73,4 @@ Response format (JSON):
       details: error.message,
     });
   }
-});
-
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
-});
-
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+}
