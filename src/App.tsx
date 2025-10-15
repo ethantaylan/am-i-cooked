@@ -1,9 +1,10 @@
-import { useState, useCallback } from "react";
-import { MESSAGES } from "./constants";
+import { useState, useCallback, useMemo } from "react";
+import { facts, MESSAGES } from "./constants";
 import { isNameC00ked } from "./utils/nameValidator";
 import type { CookStatus } from "./types";
 import c00kedDog from "./assets/c00ked-dog.webp";
 import waitingVideo from "./assets/waiting.mp4";
+import { Github } from "lucide-react";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -23,6 +24,11 @@ export default function App() {
   const handleCloseOverlay = useCallback(() => {
     setIsC00ked(null);
     setName("");
+  }, []);
+
+  const randomFact = useMemo(() => {
+    const index = Math.floor(Math.random() * facts.length);
+    return facts[index];
   }, []);
 
   return (
@@ -64,7 +70,6 @@ export default function App() {
           </div>
         )}
       </div>
-
       {/* C00ked Overlay */}
       {isC00ked === true && (
         <div className="fixed inset-0 w-screen h-screen bg-black flex items-center justify-center z-[1000]">
@@ -90,6 +95,16 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Footer */}
+      <a
+        href="https://github.com/ethantaylan"
+        className="absolute p-4 gap-3 flex flex-col items-center bottom-0 text-sm text-gray-600 hover:text-gray-400 "
+      >
+        <Github size={20} />
+        <small>@ethantaylan</small>
+        <cite className="text-center ">{randomFact}</cite>
+      </a>
     </div>
   );
 }
