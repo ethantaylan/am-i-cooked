@@ -7,7 +7,6 @@ import { C00KED_NAMES } from "../constants";
  */
 export const normalizeString = (value: string): string => {
   const cleaned = value.trim().toLowerCase();
-  // Remove accents to handle "Léah" and "Leah" the same way
   return cleaned.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 

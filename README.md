@@ -17,7 +17,7 @@ A brutally honest web app that tells you if you're **C00KED** or not. Just type 
 - 🎬 **Cinematic Experience** - Dramatic fade-ins and smooth animations
 - 🎥 **Waiting Animation** - A hypnotic looping video while you contemplate your existence
 - 🐕 **The Ultimate Reveal** - If you're c00ked, you'll know it
-- 😎 **Safe Zone** - Green light if you're good... *for now*
+- 😎 **Safe Zone** - Green light if you're good... _for now_
 - ⚡ **Lightning Fast** - Built with Vite for instant hot reload
 - 📱 **Fully Responsive** - Works perfectly on all devices
 - ♿ **Accessible** - ARIA labels and semantic HTML
@@ -73,12 +73,12 @@ src/
 
 ## 🎨 Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **React 18** | UI library with hooks |
-| **TypeScript** | Type safety and developer experience |
-| **Tailwind CSS v4** | Utility-first styling |
-| **Vite** | Lightning-fast build tool |
+| Technology          | Purpose                              |
+| ------------------- | ------------------------------------ |
+| **React 18**        | UI library with hooks                |
+| **TypeScript**      | Type safety and developer experience |
+| **Tailwind CSS v4** | Utility-first styling                |
+| **Vite**            | Lightning-fast build tool            |
 
 ## 🔧 Customization
 
@@ -87,21 +87,18 @@ src/
 **IMPORTANT:** Trigger words are stored in environment variables to keep them secret from the source code.
 
 1. Copy the example environment file:
+
    ```bash
    cp .env.example .env
    ```
 
 2. Edit [`.env`](.env) and add your secret trigger words (comma-separated):
+
    ```env
    VITE_C00KED_NAMES=name1,name2,name3
    ```
 
 3. **Security Note:** The `.env` file is gitignored and will never be committed to GitHub.
-
-The validator automatically handles:
-- ✅ Case insensitivity (`LEAH` = `leah`)
-- ✅ Accent removal (`Léah` = `Leah`)
-- ✅ Whitespace trimming
 
 ### Changing Messages
 
@@ -122,8 +119,8 @@ Modify `ANIMATION_DURATIONS` in [`src/constants/index.ts`](src/constants/index.t
 
 ```typescript
 export const ANIMATION_DURATIONS = {
-  VIDEO_FADE_IN: 2000,      // Video fade duration (ms)
-  OVERLAY_FADE_IN: 3000,    // Overlay fade duration (ms)
+  VIDEO_FADE_IN: 2000, // Video fade duration (ms)
+  OVERLAY_FADE_IN: 3000, // Overlay fade duration (ms)
   CLOSE_BUTTON_DELAY: 2000, // Close button appearance delay (ms)
 } as const;
 ```
@@ -158,6 +155,7 @@ npm run lint     # Lint code with ESLint
 ## 📱 Browser Support
 
 Modern browsers with ES6+ support:
+
 - Chrome 90+
 - Firefox 88+
 - Safari 14+
@@ -166,6 +164,7 @@ Modern browsers with ES6+ support:
 ## 🎓 Learning Resources
 
 This project demonstrates:
+
 - React hooks (`useState`, `useCallback`)
 - TypeScript best practices
 - Tailwind CSS utility-first approach
@@ -176,6 +175,7 @@ This project demonstrates:
 ## 🤝 Contributing
 
 Want to add more c00ked names? Feel free to:
+
 1. Fork the repo
 2. Add names to `C00KED_NAMES`
 3. Submit a PR
