@@ -10,6 +10,13 @@ const getC00kedNames = (): readonly string[] => {
     console.warn("VITE_C00KED_NAMES not found in environment variables");
     return [];
   }
+  console.log(`
+██     ███████ ███████ ███████     ██    ██  ██████  ██    ██ 
+██     ██      ██      ██           ██  ██  ██    ██ ██    ██ 
+██     ███████ █████   █████         ████   ██    ██ ██    ██ 
+██          ██ ██      ██             ██    ██    ██ ██    ██ 
+██     ███████ ███████ ███████        ██     ██████   ██████
+`);
   return envNames.split(",").map((name: string) => name.trim().toLowerCase());
 };
 
