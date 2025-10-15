@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "*",
+      "Bash(npm install)",
+      "Bash(curl -o \"c:\\Users\\ethan\\Desktop\\dev\\am-i-cooked\\public\\favicon.ico\" \"https://em-content.zobj.net/source/apple/391/dog-face_1f436.png\")",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
