@@ -8,7 +8,7 @@ export const APP_CONFIG = {
   api: {
     baseUrl: import.meta.env.VITE_API_URL || "http://localhost:3001",
     endpoints: {
-      judge: "/.netlify/functions/judge",
+      judge: "/netlify/functions/judge",
       health: "/api/health",
     },
     timeout: 30000, // 30 seconds
