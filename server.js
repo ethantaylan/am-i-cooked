@@ -79,7 +79,7 @@ Response format (JSON):
         },
       ],
       response_format: { type: "json_object" },
-      temperature: 0.8,
+      temperature: 0.2,
     });
 
     const result = JSON.parse(completion.choices[0].message.content);

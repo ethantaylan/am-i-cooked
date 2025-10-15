@@ -127,10 +127,10 @@ export const SettingsModal: React.FC = () => {
               >
                 <div
                   className={`text-2xl mb-2 ${
-                    language === "en" ? "grayscale-0" : "grayscale"
+                    language === "en" ? "text-white" : "text-white/50"
                   }`}
                 >
-                  🇬🇧
+                  EN
                 </div>
                 <div
                   className={`text-sm font-medium ${
@@ -153,10 +153,10 @@ export const SettingsModal: React.FC = () => {
               >
                 <div
                   className={`text-2xl mb-2 ${
-                    language === "fr" ? "grayscale-0" : "grayscale"
+                    language === "fr" ? "text-white" : "text-white/50"
                   }`}
                 >
-                  🇫🇷
+                  FR
                 </div>
                 <div
                   className={`text-sm font-medium ${

@@ -7,6 +7,7 @@ import { useState, useCallback } from "react";
 import { judgeScenario } from "../services/judgement.service";
 import type { AIJudgement, CookStatus } from "../types";
 import { useApp } from "../contexts/AppContext";
+import { Language } from "../i18n/translations";
 
 interface UseJudgementReturn {
   isCooked: CookStatus;
@@ -25,30 +26,39 @@ export const useJudgement = (): UseJudgementReturn => {
   const [aiJudgement, setAiJudgement] = useState<AIJudgement | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const { language } = useApp();
 
-  const judge = useCallback(async (scenario: string) => {
-    if (!scenario.trim()) {
-      reset();
-      return;
-    }
+  const languageMap: Record<Language, string> = {
+    fr: "français",
+    en: "english",
+  };
 
-    setLoading(true);
-    setError(null);
+  const judge = useCallback(
+    async (scenario: string) => {
+      if (!scenario.trim()) {
+        reset();
+        return;
+      }
 
-    try {
-      const result = await judgeScenario(scenario, language);
-      setIsCooked(result.isCooked);
-      setAiJudgement(result.judgement);
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An error occurred";
-      setError(errorMessage);
-      console.error("Error judging scenario:", err);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+      setLoading(true);
+      setError(null);
+
+      try {
+        const result = await judgeScenario(scenario, languageMap[language] as Language);
+        setIsCooked(result.isCooked);
+        setAiJudgement(result.judgement);
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error ? err.message : "An error occurred";
+        setError(errorMessage);
+        console.error("Error judging scenario:", err);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [language]
+  );
 
   const reset = useCallback(() => {
     setIsCooked(null);

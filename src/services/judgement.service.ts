@@ -52,16 +52,8 @@ export const judgeScenario = async (
     };
   }
 
-  const languageMap: Record<Language, string> = {
-    fr: "français",
-    en: "english",
-  };
-
   // Call AI API for judgement
-  const judgement = await apiClient.judgeScenario(
-    scenario,
-    languageMap[language]
-  );
+  const judgement = await apiClient.judgeScenario(scenario, language);
 
   return {
     isCooked: judgement.percentage >= APP_CONFIG.ui.judgementThreshold,

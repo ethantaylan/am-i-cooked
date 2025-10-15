@@ -48,7 +48,7 @@ export default function App() {
       {/* Settings Button - Top Right */}
       <button
         onClick={openSettings}
-        className={`fixed top-4 flex items-center justify-center right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-3 rounded-full border hover:scale-110 active:scale-95 transition-all duration-200 shadow-lg ${
+        className={`cursor-pointer fixed top-4 flex items-center justify-center right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-3 rounded-full border hover:scale-110 active:scale-95 transition-all duration-200 shadow-lg ${
           isDark
             ? "bg-gray-900 border-gray-700 text-white"
             : "bg-gray-200 border-gray-300 text-black"

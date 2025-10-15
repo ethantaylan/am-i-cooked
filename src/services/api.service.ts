@@ -8,6 +8,7 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 import { APP_CONFIG } from "../config/app.config";
 import { logger } from "../utils/logger";
 import type { AIJudgement } from "../types";
+import { Language } from "../i18n/translations";
 
 /**
  * Custom API Error class for better error handling
@@ -99,7 +100,7 @@ class ApiClient {
   /**
    * Judge a scenario
    */
-  async judgeScenario(scenario: string, language: string): Promise<AIJudgement> {
+  async judgeScenario(scenario: string, language: Language): Promise<AIJudgement> {
     const response = await this.client.post<AIJudgement>(
       APP_CONFIG.api.endpoints.judge,
       { scenario, language }

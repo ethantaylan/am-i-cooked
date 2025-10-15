@@ -16,7 +16,7 @@ export const VideoHeader: React.FC = () => {
       {/* Video - Responsive */}
       <div className="mb-6 sm:mb-8 flex justify-center items-center animate-[fadeInSlow_2s_ease-out]">
         <video
-          className={`w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] border-2 sm:border-3 hover:scale-105 duration-300 rounded-full object-cover shadow-[0_0_20px_rgba(255,255,255,0.2)] ${
+          className={`w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] border-2 sm:border-3 hover:scale-105 duration-300 rounded-full object-cover shadow-[0_0_20px_rgba(255,255,255,0.2)] ${
             isDark ? "border-gray-700" : "border-gray-300"
           }`}
           src={waitingVideo}
