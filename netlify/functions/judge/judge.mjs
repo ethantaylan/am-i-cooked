@@ -33,4 +33,4 @@ export const APP_CONFIG = {
   ui: {
     judgementThreshold: 50, // Percentage threshold for being "cooked"
   },
-} as const;
+};
