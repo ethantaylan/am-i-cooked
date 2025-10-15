@@ -14,6 +14,7 @@ import {
   ResultOverlay,
   Footer,
   SettingsModal,
+  JudgeButton,
 } from "./components";
 
 export default function App() {
@@ -92,19 +93,12 @@ export default function App() {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
+          <JudgeButton
+            loading={loading}
             disabled={!isValid || loading}
-            className={`w-full sm:w-auto mt-5 group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg rounded-full hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110 active:scale-95 ${
-              isDark
-                ? "bg-white text-black disabled:hover:bg-white disabled:hover:text-black"
-                : "bg-black text-white disabled:hover:bg-black disabled:hover:text-white"
-            }`}
-          >
-            <span className="relative z-10 uppercase text-sm sm:text-base">
-              {loading ? t.buttonLoading : t.buttonDefault}
-            </span>
-          </button>
+            onClick={() => {}}
+            scenario={scenario}
+          />
         </form>
 
         {/* Error Message */}
