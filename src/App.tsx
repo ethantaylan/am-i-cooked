@@ -1,110 +1,131 @@
-import { useState, useCallback, useMemo } from "react";
-import { facts, MESSAGES } from "./constants";
-import { isNameC00ked } from "./utils/nameValidator";
-import type { CookStatus } from "./types";
-import c00kedDog from "./assets/c00ked-dog.webp";
-import waitingVideo from "./assets/waiting.mp4";
-import { Github } from "lucide-react";
+/**
+ * App Component - Mobile-First, Responsive, Multi-language
+ * Complete refactor with i18n and theme support
+ */
+
+import { useCallback } from "react";
+import { Settings } from "lucide-react";
+import { useJudgement } from "./hooks/useJudgement";
+import { useScenarioInput } from "./hooks/useScenarioInput";
+import { useApp } from "./contexts/AppContext";
+import {
+  VideoHeader,
+  ErrorMessage,
+  ResultOverlay,
+  Footer,
+  SettingsModal,
+} from "./components";
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [isC00ked, setIsC00ked] = useState<CookStatus>(null);
+  const { t, openSettings, theme } = useApp();
+  const { scenario, handleChange, handleClear, isValid } = useScenarioInput();
+  const { isCooked, aiJudgement, loading, error, judge, reset } =
+    useJudgement();
 
-  const handleInputChange = useCallback((value: string) => {
-    setName(value);
-
-    if (!value.trim()) {
-      setIsC00ked(null);
-      return;
-    }
-
-    setIsC00ked(isNameC00ked(value));
-  }, []);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (isValid && !loading) {
+        judge(scenario);
+      }
+    },
+    [scenario, isValid, loading, judge]
+  );
 
   const handleCloseOverlay = useCallback(() => {
-    setIsC00ked(null);
-    setName("");
-  }, []);
+    reset();
+    handleClear();
+  }, [reset, handleClear]);
 
-  const randomFact = useMemo(() => {
-    const index = Math.floor(Math.random() * facts.length);
-    return facts[index];
-  }, []);
+  const isDark = theme === "dark";
 
   return (
-    <div className="min-h-screen w-screen bg-black flex items-center justify-center text-white overflow-hidden">
-      <div className="w-full max-w-[600px] px-8 text-center animate-[fadeInUp_0.8s_ease-out]">
-        {/* Video - Always visible */}
-        <div className="mb-8 flex justify-center items-center animate-[fadeInSlow_2s_ease-out]">
-          <video
-            className="w-[200px] h-[200px] rounded-full object-cover shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-            src={waitingVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        </div>
+    <div
+      className={`min-h-screen w-screen flex items-center justify-center overflow-hidden transition-colors duration-300 ${
+        isDark ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      {/* Settings Button - Top Right */}
+      <button
+        onClick={openSettings}
+        className={`fixed top-4 flex items-center justify-center right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-3 rounded-full border hover:scale-110 active:scale-95 transition-all duration-200 shadow-lg ${
+          isDark
+            ? "bg-gray-900 border-gray-700 text-white"
+            : "bg-gray-200 border-gray-300 text-black"
+        }`}
+        aria-label={t.settings}
+      >
+        <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
 
-        {/* Title */}
-        <h1 className="text-3xl sm:text-5xl md:text-7xl tracking-wider">
-          {MESSAGES.TITLE}
-        </h1>
+      {/* Main Content */}
+      <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[600px] px-4 sm:px-6 md:px-8 text-center animate-[fadeInUp_0.8s_ease-out]">
+        <VideoHeader />
 
-        {/* Input */}
-        <div className="mx-auto w-full flex items-center justify-center mt-10">
-          <input
-            aria-label="name-input"
-            value={name}
-            onChange={(e) => handleInputChange(e.target.value)}
-            className="w-full border-b p-5 placeholder:text-xl"
-            placeholder={MESSAGES.PLACEHOLDER}
-            autoFocus
-          />
-        </div>
-
-        {/* Success Message */}
-        {isC00ked === false && name.trim() !== "" && (
-          <div className="mt-12 text-2xl font-normal text-[#4ade80] tracking-[0.1em] animate-[fadeInUp_0.6s_ease-out] [text-shadow:0_0_20px_rgba(74,222,128,0.5)]">
-            <p>{MESSAGES.SUCCESS}</p>
-          </div>
-        )}
-      </div>
-      {/* C00ked Overlay */}
-      {isC00ked === true && (
-        <div className="fixed inset-0 w-screen h-screen bg-black flex items-center justify-center z-[1000]">
-          {/* Close Button */}
-          <button
-            className="fixed top-8 right-8 w-[50px] h-[50px] rounded-full bg-white/10 border-2 border-white/30 text-white text-2xl cursor-pointer flex items-center justify-center transition-all duration-300 z-[1001] animate-[fadeInSlow_1s_ease-out_2s_forwards] opacity-0 hover:bg-white/20 hover:border-white/60 hover:scale-110 active:scale-95"
-            onClick={handleCloseOverlay}
-            aria-label="Close overlay"
-          >
-            ✕
-          </button>
-
-          {/* Content */}
-          <div className="flex flex-col items-center justify-center gap-8 animate-[fadeInSlow_3s_ease-in_forwards] opacity-0">
-            <img
-              className="max-w-[600px] w-[85vw] h-auto rounded-lg [filter:grayscale(0%)_contrast(1.1)]"
-              src={c00kedDog}
-              alt="c00ked dog"
+        {/* Input Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="mx-auto w-full flex flex-col items-center justify-center mt-6 sm:mt-8 md:mt-10 gap-4 sm:gap-6"
+        >
+          {/* Scenario Input */}
+          <div className="w-full relative">
+            <input
+              aria-label="scenario-input"
+              value={scenario}
+              onChange={(e) => handleChange(e.target.value)}
+              className={`w-full bg-transparent border-2 rounded-2xl p-3 sm:p-4 md:p-5 text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base focus:outline-none transition-all duration-300 ${
+                isDark
+                  ? "border-gray-700 text-white placeholder:text-gray-500 focus:border-gray-500"
+                  : "border-gray-300 text-black placeholder:text-gray-400 focus:border-gray-400"
+              }`}
+              placeholder={t.inputPlaceholder}
+              autoFocus
+              disabled={loading}
+              maxLength={200}
             />
-            <div className="text-[clamp(3rem,12vw,6rem)] font-bold text-white tracking-[0.5em] ml-[0.5em] uppercase animate-[fadeInUp_1s_ease-out_2s_forwards] opacity-0">
-              {MESSAGES.C00KED}
+            <div
+              className={`absolute -bottom-5 right-2 text-xs ${
+                isDark ? "text-gray-600" : "text-gray-400"
+              }`}
+            >
+              {scenario.length}/200
             </div>
           </div>
-        </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={!isValid || loading}
+            className={`w-full sm:w-auto mt-5 group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 font-bold text-base sm:text-lg rounded-full hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110 active:scale-95 ${
+              isDark
+                ? "bg-white text-black disabled:hover:bg-white disabled:hover:text-black"
+                : "bg-black text-white disabled:hover:bg-black disabled:hover:text-white"
+            }`}
+          >
+            <span className="relative z-10 uppercase text-sm sm:text-base">
+              {loading ? t.buttonLoading : t.buttonDefault}
+            </span>
+          </button>
+        </form>
+
+        {/* Error Message */}
+        <ErrorMessage error={error} />
+      </div>
+
+      {/* Result Overlay */}
+      {isCooked !== null && (
+        <ResultOverlay
+          isCooked={isCooked}
+          aiJudgement={aiJudgement}
+          onClose={handleCloseOverlay}
+        />
       )}
 
       {/* Footer */}
-      <a
-        href="https://github.com/ethantaylan"
-        className="absolute p-4 gap-3 flex flex-col items-center bottom-0 text-sm text-gray-600 hover:text-gray-400 "
-      >
-        <Github size={20} />
-        <small>@ethantaylan</small>
-        <cite className="text-center ">{randomFact}</cite>
-      </a>
+      <Footer />
+
+      {/* Settings Modal */}
+      <SettingsModal />
     </div>
   );
 }

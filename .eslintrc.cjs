@@ -18,6 +18,16 @@ module.exports = {
         sourceType: "script",
       },
     },
+    {
+      env: {
+        node: true,
+        es2021: true,
+      },
+      files: ["server.js", "*.config.js"],
+      parserOptions: {
+        sourceType: "module",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

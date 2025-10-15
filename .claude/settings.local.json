@@ -13,7 +13,16 @@
       "Bash(git gc:*)",
       "Bash(git update-ref:*)",
       "Bash(cat:*)",
-      "Bash(npm install express cors dotenv)"
+      "Bash(npm install express cors dotenv)",
+      "Bash(npm install:*)",
+      "Bash(test -f c:UsersethanDesktopdevam-i-cooked.env.local)",
+      "Bash(npm run dev:backend:*)",
+      "Bash(npm run dev)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(copy App.tsx App.tsx.backup)"
     ],
     "deny": [],
     "ask": []

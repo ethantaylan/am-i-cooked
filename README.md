@@ -10,13 +10,14 @@
 
 ## 🎯 What is this?
 
-A brutally honest web app that tells you if you're **C00KED** or not. Just type your name and prepare yourself for the truth.
+A brutally honest web app powered by **AI** that judges how "cooked" you are based on your situation. Describe your scenario and get an instant verdict with a cooking percentage!
 
 ### ✨ Features
 
+- 🤖 **AI-Powered Judgement** - OpenAI analyzes your situation and rates how cooked you are (0-100%)
 - 🎬 **Cinematic Experience** - Dramatic fade-ins and smooth animations
 - 🎥 **Waiting Animation** - A hypnotic looping video while you contemplate your existence
-- 🐕 **The Ultimate Reveal** - If you're c00ked, you'll know it
+- 🐕 **The Ultimate Reveal** - If you're c00ked, you'll see the percentage and a witty verdict
 - 😎 **Safe Zone** - Green light if you're good... _for now_
 - ⚡ **Lightning Fast** - Built with Vite for instant hot reload
 - 📱 **Fully Responsive** - Works perfectly on all devices
@@ -35,10 +36,13 @@ cd am-i-cooked
 npm install
 
 # Set up environment variables
-cp .env.example .env
-# Edit .env and add your secret trigger words
+cp .env.example .env.local
+# Edit .env.local and add your secret trigger words AND OpenAI API key
 
-# Start the dev server
+# Start the backend server (in one terminal)
+npm run dev:backend
+
+# Start the frontend dev server (in another terminal)
 npm run dev
 
 # Build for production
@@ -79,26 +83,37 @@ src/
 | **TypeScript**      | Type safety and developer experience |
 | **Tailwind CSS v4** | Utility-first styling                |
 | **Vite**            | Lightning-fast build tool            |
+| **Express**         | Backend server                       |
+| **OpenAI API**      | AI-powered judgement system          |
 
 ## 🔧 Customization
 
 ### 🔐 Environment Setup
 
-**IMPORTANT:** Trigger words are stored in environment variables to keep them secret from the source code.
+**IMPORTANT:** Secrets are stored in environment variables to keep them safe.
 
 1. Copy the example environment file:
 
    ```bash
-   cp .env.example .env
+   cp .env.example .env.local
    ```
 
-2. Edit [`.env`](.env) and add your secret trigger words (comma-separated):
+2. Edit [`.env.local`](.env.local) and add your configuration:
 
    ```env
+   # Predefined trigger words (comma-separated)
    VITE_C00KED_NAMES=name1,name2,name3
+
+   # OpenAI API Key (required for AI judgement)
+   OPENAI_API_KEY=sk-your-api-key-here
+
+   # Server port (optional, defaults to 3001)
+   PORT=3001
    ```
 
-3. **Security Note:** The `.env` file is gitignored and will never be committed to GitHub.
+3. **Security Note:** The `.env.local` file is gitignored and will never be committed to GitHub.
+
+4. **Get an OpenAI API Key:** Visit [OpenAI Platform](https://platform.openai.com/api-keys) to create your API key.
 
 ### Changing Messages
 
@@ -136,12 +151,19 @@ npm run lint     # Lint code with ESLint
 
 ## 🎭 How It Works
 
-1. **Type a name** - The app checks in real-time
-2. **Watch the video** - A looping animation keeps you entertained
+1. **Describe your situation** - Type anything like "I shit on myself" or "I forgot my girlfriend's birthday"
+2. **Click "Am I Cooked?"** - The AI analyzes your scenario
 3. **Get the verdict**:
    - ✅ **Green message** - You're safe (for now)
-   - 🔥 **C00KED** - The dramatic overlay appears with a meme
-4. **Close and retry** - Click the ✕ button to try another name
+   - 🔥 **C00KED** - A dramatic overlay shows your cooking percentage (0-100%) and a witty AI verdict
+4. **Close and retry** - Click the ✕ button to try another scenario
+
+### Example Scenarios to Try:
+
+- "I accidentally sent a message about my boss to my boss"
+- "I forgot my anniversary"
+- "I said 'you too' when the waiter said 'enjoy your meal'"
+- "I called my teacher 'mom' in class"
 
 ## 🧪 Code Quality
 
@@ -151,6 +173,45 @@ npm run lint     # Lint code with ESLint
 - ✅ **Performance Optimized** - Memoized callbacks
 - ✅ **Clean Architecture** - Separation of concerns
 - ✅ **No Dependencies Bloat** - Only essential packages
+
+## 🚀 Production Deployment
+
+### Security Features Included:
+
+- ✅ **Backend Server** - API keys stay private and secure
+- ✅ **Rate Limiting** - 20 requests per 15 minutes per IP
+- ✅ **CORS Protection** - Only your domain can access the API
+- ✅ **Input Validation** - Max 500 characters per scenario
+- ✅ **Request Size Limits** - 10KB max to prevent abuse
+
+### Deployment Steps:
+
+1. **Deploy Backend** (e.g., Railway, Render, Heroku):
+   - Set environment variables:
+     - `OPENAI_API_KEY` - Your OpenAI API key
+     - `FRONTEND_URL` - Your frontend URL (e.g., https://myapp.vercel.app)
+     - `NODE_ENV=production`
+   - Deploy the [server.js](server.js) file
+
+2. **Deploy Frontend** (e.g., Vercel, Netlify):
+   - Update [src/App.tsx](src/App.tsx) line 37 with your backend URL:
+     ```typescript
+     const response = await axios.post("https://your-backend.com/api/judge", {
+       scenario: scenario,
+     });
+     ```
+   - Build and deploy: `npm run build`
+
+3. **Update CORS** in [server.js](server.js):
+   - Change `https://yourdomain.com` to your actual frontend URL
+
+### Recommended Hosting:
+
+| Service | For | Free Tier |
+|---------|-----|-----------|
+| **Vercel** | Frontend | Yes |
+| **Railway** | Backend | Yes (limited) |
+| **Render** | Backend | Yes |
 
 ## 📱 Browser Support
 
