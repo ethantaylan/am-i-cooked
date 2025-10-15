@@ -4,7 +4,7 @@
 
 // Load C00KED names from environment variables to keep them secret
 const getC00kedNames = (): readonly string[] => {
-  const envNames = atob(import.meta.env.VITE_C00KED_NAMES);
+  const envNames = import.meta.env.VITE_C00KED_NAMES;
 
   if (!envNames) {
     console.warn("VITE_C00KED_NAMES not found in environment variables");
