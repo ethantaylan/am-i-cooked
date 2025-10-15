@@ -6,5 +6,5 @@ export type CookStatus = boolean | null;
 
 export interface AppState {
   name: string;
-  isCooked: CookStatus;
+  isC00ked: CookStatus;
 }

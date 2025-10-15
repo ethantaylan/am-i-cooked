@@ -2,7 +2,8 @@
  * Application constants
  */
 
-export const COOKED_NAMES = [
+export const C00KED_NAMES = [
+  "REDACTED",
   "REDACTED",
   "REDACTED",
   "REDACTED",
@@ -22,8 +23,8 @@ export const COOKED_NAMES = [
 
 export const MESSAGES = {
   SUCCESS: "😎 you are good, for now",
-  COOKED: "COOKED",
-  TITLE: "am i cooked?",
+  C00KED: "C00KED",
+  TITLE: "am i c00ked?",
   PLACEHOLDER: "type something...",
 } as const;
 

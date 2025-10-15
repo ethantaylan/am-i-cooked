@@ -1,4 +1,4 @@
-import { COOKED_NAMES } from "../constants";
+import { C00KED_NAMES } from "../constants";
 
 /**
  * Normalizes a string by removing accents and converting to lowercase
@@ -12,12 +12,12 @@ export const normalizeString = (value: string): string => {
 };
 
 /**
- * Checks if a name is in the "cooked" list
+ * Checks if a name is in the "c00ked" list
  * @param name - The name to check
- * @returns true if the name is cooked, false otherwise
+ * @returns true if the name is c00ked, false otherwise
  */
-export const isNameCooked = (name: string): boolean => {
+export const isNameC00ked = (name: string): boolean => {
   if (!name.trim()) return false;
   const normalized = normalizeString(name);
-  return COOKED_NAMES.includes(normalized as typeof COOKED_NAMES[number]);
+  return C00KED_NAMES.includes(normalized as typeof C00KED_NAMES[number]);
 };

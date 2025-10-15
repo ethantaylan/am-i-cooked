@@ -1,27 +1,27 @@
 import { useState, useCallback } from "react";
 import { MESSAGES } from "./constants";
-import { isNameCooked } from "./utils/nameValidator";
+import { isNameC00ked } from "./utils/nameValidator";
 import type { CookStatus } from "./types";
-import cookedDog from "./assets/cooked-dog.webp";
+import c00kedDog from "./assets/cooked-dog.webp";
 import waitingVideo from "./assets/waiting.mp4";
 
 export default function App() {
   const [name, setName] = useState("");
-  const [isCooked, setIsCooked] = useState<CookStatus>(null);
+  const [isC00ked, setIsC00ked] = useState<CookStatus>(null);
 
   const handleInputChange = useCallback((value: string) => {
     setName(value);
 
     if (!value.trim()) {
-      setIsCooked(null);
+      setIsC00ked(null);
       return;
     }
 
-    setIsCooked(isNameCooked(value));
+    setIsC00ked(isNameC00ked(value));
   }, []);
 
   const handleCloseOverlay = useCallback(() => {
-    setIsCooked(null);
+    setIsC00ked(null);
     setName("");
   }, []);
 
@@ -58,15 +58,15 @@ export default function App() {
         </div>
 
         {/* Success Message */}
-        {isCooked === false && name.trim() !== "" && (
+        {isC00ked === false && name.trim() !== "" && (
           <div className="mt-12 text-2xl font-normal text-[#4ade80] tracking-[0.1em] animate-[fadeInUp_0.6s_ease-out] [text-shadow:0_0_20px_rgba(74,222,128,0.5)]">
             <p>{MESSAGES.SUCCESS}</p>
           </div>
         )}
       </div>
 
-      {/* Cooked Overlay */}
-      {isCooked === true && (
+      {/* C00ked Overlay */}
+      {isC00ked === true && (
         <div className="fixed inset-0 w-screen h-screen bg-black flex items-center justify-center z-[1000]">
           {/* Close Button */}
           <button
@@ -81,11 +81,11 @@ export default function App() {
           <div className="flex flex-col items-center justify-center gap-8 animate-[fadeInSlow_3s_ease-in_forwards] opacity-0">
             <img
               className="max-w-[600px] w-[85vw] h-auto rounded-lg [filter:grayscale(0%)_contrast(1.1)]"
-              src={cookedDog}
-              alt="cooked dog"
+              src={c00kedDog}
+              alt="c00ked dog"
             />
             <div className="text-[clamp(3rem,12vw,6rem)] font-bold text-white tracking-[0.5em] ml-[0.5em] uppercase animate-[fadeInUp_1s_ease-out_2s_forwards] opacity-0">
-              {MESSAGES.COOKED}
+              {MESSAGES.C00KED}
             </div>
           </div>
         </div>
