@@ -6,32 +6,7 @@ import rateLimit from "express-rate-limit";
 
 dotenv.config({ path: ".env.local" });
 
-const app = express();
-const port = process.env.PORT || 3001;
-
-// CORS configuration - update with your production domain
-const corsOptions = {
-  origin:
-    process.env.NODE_ENV === "production"
-      ? process.env.FRONTEND_URL || "https://am-i-c00ked.netlify.app"
-      : ["http://localhost:5173", "http://localhost:5174"],
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-app.use(express.json({ limit: "10kb" })); // Limit request size
-
 // Rate limiting to prevent abuse
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // Limit each IP to 20 requests per windowMs
-  message: { error: "Too many requests, please try again later." },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-app.use("/api/", limiter);
-
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
