@@ -27,7 +27,7 @@ export const JudgeButton: React.FC<JudgeButtonProps> = ({
   onClick,
   scenario,
 }) => {
-  const trackEvent = () => {
+  const trackEvent = async () => {
     // Send GA4 event with input value
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "judge_button_click", {

@@ -48,6 +48,10 @@ Analyze the scenario and respond with:
 
 Be funny, slightly sarcastic, but not mean. Use internet slang when appropriate.
 
+having 100% should be hard, very bad situation
+
+Its like a game, being 100% cooked is winning, be a good judge
+
 The verdict must be written in ${language}.
 Respond strictly in this JSON format:
 {
